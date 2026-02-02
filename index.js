@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,7 +24,16 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on port ${PORT}`);
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
 });
 
+app
+  .listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
+  })
+  .on("error", (err) => {
+    console.error("Server failed to start:", err);
+    process.exit(1);
+  });
