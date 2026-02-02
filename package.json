@@ -1,6 +1,6 @@
 {
+  "type": "module",
   "dependencies": {
-    "express": "^5.2.1",
-    "node-fetch": "^3.3.2"
+    "express": "^4.18.2"
   }
 }
